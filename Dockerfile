@@ -1,5 +1,6 @@
 FROM alpine:3.22
 
-COPY scripts/ssl /root
+WORKDIR /root
+COPY scripts/ssl .
 
-CMD ["/bin/sh", "-c", ". /root/generate-self-signed-certificate.sh"]
+CMD ["/bin/sh", "-c", ". generate-self-signed-certificate.sh"]
