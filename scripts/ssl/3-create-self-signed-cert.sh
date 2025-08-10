@@ -1,8 +1,8 @@
 #!/bin/bash
 
 CERT_PROJ_DIR=/etc/ssl/certs/self-signed
-CERT_PROJ_DIR_PRIVATE=/etc/ssl/certs/self-signed/private
-CERT_PROJ_DIR_PUBLIC=/etc/ssl/certs/self-signed/public
+CERT_PROJ_DIR_PRIVATE=/etc/ssl/private/flags
+CERT_PROJ_DIR_PUBLIC=/etc/ssl/certs/flags
 CERT_ROOT_CA_PATH=/etc/ssl/rootCA
 
 # 1. Create the project directory and its subdirectories if they don't already exist
@@ -18,7 +18,7 @@ cp /root/csr.conf $CERT_PROJ_DIR
 
 # 4. Generate Certificate Signing Request (CSR)
 openssl req -new \
-	-key $CERT_PROJ_DIR_PRIVATE/private.key \
+	-key $CERT_PROJ_DIR_PRIVATE/server.key \
 	-out $CERT_PROJ_DIR/request.csr \
 	-config $CERT_PROJ_DIR/csr.conf
 
