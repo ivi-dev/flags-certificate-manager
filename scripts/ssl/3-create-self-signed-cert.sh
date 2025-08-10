@@ -11,7 +11,7 @@ CERT_ROOT_CA_PATH=/etc/ssl/rootCA
 [ ! -d $CERT_PROJ_DIR_PUBLIC ] && mkdir -p $CERT_PROJ_DIR_PUBLIC
 
 # 2. Create the Server Private Key
-openssl genrsa -out $CERT_PROJ_DIR_PRIVATE/private.key 2048
+openssl genrsa -out $CERT_PROJ_DIR_PRIVATE/server.key 2048
 
 # 3. Copy over the Certificate Signing Request (CSR) Configuration
 cp /root/csr.conf $CERT_PROJ_DIR
