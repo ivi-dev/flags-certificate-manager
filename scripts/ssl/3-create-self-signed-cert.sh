@@ -35,3 +35,8 @@ openssl x509 -req \
     	-days 365 \
     	-sha256 \
 		-extfile $CERT_PROJ_DIR/cert.conf
+
+# 7. Combine the server key and certificate into a single file
+cat $CERT_PROJ_DIR_PRIVATE/server.key $CERT_PROJ_DIR_PUBLIC/cert.crt > \
+	$CERT_PROJ_DIR_PRIVATE/cert-n-key-combined.pem
+chmod 744 $CERT_PROJ_DIR_PRIVATE/cert-n-key-combined.pem
