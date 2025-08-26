@@ -1,7 +1,8 @@
 #!/bin/bash
 
-
 ROOT_CA_PATH=/etc/ssl/rootCA
+CERT_PROJ_DIR_PRIVATE=/etc/ssl/private/flags
+CERT_PROJ_DIR_PUBLIC=/etc/ssl/certs/flags
 DOMAIN_NAME=secure-cert.com
 COUNTRY=BG
 CITY=Sofia
@@ -20,3 +21,9 @@ openssl req -x509 \
             -subj "/CN=$DOMAIN_NAME/C=$COUNTRY/L=$CITY" \
             -keyout $ROOT_CA_PATH/root.key \
 	        -out $ROOT_CA_PATH/root.crt
+cp $ROOT_CA_PATH/root.crt $CERT_PROJ_DIR_PUBLIC/root.crt
+
+# 3. Combine the CA's key and root certificate into a single file
+cat $ROOT_CA_PATH/root.key $ROOT_CA_PATH/root.crt > \
+	$CERT_PROJ_DIR_PRIVATE/ca-cert-n-key-combined.pem
+chmod 744 $CERT_PROJ_DIR_PRIVATE/ca-cert-n-key-combined.pem
